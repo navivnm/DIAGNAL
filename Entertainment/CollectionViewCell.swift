@@ -16,6 +16,9 @@ class  CollectionViewCell: UICollectionViewCell
     func funcDisplayCollection(image: UIImage, title: String)
     {
         imageDisplay.image = image
+        
         labelText.text = title
+        labelText.sizeToFit()
+        labelText.adjustsFontSizeToFitWidth = true
     }
 }

@@ -14,40 +14,49 @@ class jsonClass
     var arrayName = [String]()
     var arrayImageName = [String]()
     
-    func funcJsonParse()
+    func funcJsonParse(jsonFile: String)
     {
-        let path = Bundle.main.path(forResource: "CONTENTLISTINGPAGE-PAGE1", ofType: "json")
-        let url = URL(fileURLWithPath: path!)
-        
-        do {
-            let data = try Data(contentsOf: url)
-            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! NSDictionary
-            //print(json as Any)
-            guard let page = json.value(forKey: "page") as? NSDictionary else {
-                jsonStatus?("0")
-                return
-            }
-            //let page = json.value(forKey: "page") as! NSDictionary
-            guard let contentitems = page.value(forKey: "content-items") as? NSDictionary else {
-                jsonStatus?("0")
-                return
-            }
-            for i in contentitems.value(forKey: "content") as! NSArray
+        if let path = Bundle.main.path(forResource: jsonFile, ofType: "json")
+        {
+            do
             {
-                guard let result = i as? NSDictionary else {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! NSDictionary
+                //print(json as Any)
+                guard let page = json.value(forKey: "page") as? NSDictionary else {
                     jsonStatus?("0")
                     return
                 }
-                let parse = parsedData(json: result as! [String : Any])
-                arrayName.append(parse.name)
-                arrayImageName.append(parse.imageName)
-                //print(parse.name,"url", parse.imageName)
-            }
-            print("--------")
-            jsonStatus?("1")
+                //let page = json.value(forKey: "page") as! NSDictionary
+                guard let contentitems = page.value(forKey: "content-items") as? NSDictionary else {
+                    jsonStatus?("0")
+                    return
+                }
+                for i in contentitems.value(forKey: "content") as! NSArray
+                {
+                    guard let result = i as? NSDictionary else {
+                        jsonStatus?("0")
+                        return
+                    }
+                    let parse = parsedData(json: result as! [String : Any])
+                    arrayName.append(parse.name)
+                    if parse.imageName == "posterthatismissing.jpg"
+                    {
+                        arrayImageName.append("placeholder_for_missing_posters.png")
+                    }
+                    else
+                    {
+                        arrayImageName.append(parse.imageName)
+                    }
+                    //print(parse.name,"url", parse.imageName)
+                }
+                print("--------")
+                jsonStatus?("1")
             
-        } catch  {
-            print("errr")
+            }catch{
+                print("errr")
+                jsonStatus?("0")
+            }
         }
     }
 }

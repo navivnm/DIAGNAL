@@ -8,27 +8,14 @@
 
 import UIKit
 
-/*struct parsedData: Decodable
-{
-    let name: String
-    let imageName: String
-    
-    init(json: [String: Any])
-    {
-        name = json["name"] as? String ?? ""
-        imageName = json["poster-image"] as? String ?? ""
-    }
-}*/
-
 class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate
 {
-    //var cellColor = true
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var navigationName: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var jsonCall = jsonClass()
-    
+    var callCount = 0
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -46,11 +33,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         // Dispose of any resources that can be recreated.
     }
 
-    //json
-    
+    //json cal
     func funcJsonPath()
     {
-        
         self.jsonCall.jsonStatus = {[weak self] (status: String) in
             print("****************", status)
             DispatchQueue.main.async {
@@ -60,7 +45,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                 }
                 else
                 {
-                    self?.funcAlert(title: "got data", message: "got json data")
+                    self?.collectionView.reloadData()
+                    //self?.funcAlert(title: "got data", message: "got json data")
                     for i in (self?.jsonCall.arrayImageName)!
                     {
                         print(i)
@@ -68,33 +54,50 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                 }
             }
         }
-        jsonCall.funcJsonParse()
-        /*let path = Bundle.main.path(forResource: "CONTENTLISTINGPAGE-PAGE1", ofType: "json")
-        let url = URL(fileURLWithPath: path!)
         
-        do {
-            let data = try Data(contentsOf: url)
-            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! NSDictionary
-            //print(json as Any)
-            guard let page = json.value(forKey: "page") as? NSDictionary else {
-                return
-            }
-            //let page = json.value(forKey: "page") as! NSDictionary
-            guard let contentitems = page.value(forKey: "content-items") as? NSDictionary else {
-                return
-            }
-            for i in contentitems.value(forKey: "content") as! NSArray
-            {
-                guard let result = i as? NSDictionary else {
-                    return
-                }
-                let parse = parsedData(json: result as! [String : Any])
-                print(parse.name,"url", parse.imageName)
-            }
-        
-        } catch  {
-            print("errr")
+        /*let countNameArray = jsonCall.arrayName.count
+        print(countNameArray)
+        if countNameArray == 0
+        {
+            jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE3")
+        }
+        else if countNameArray == 20
+        {
+            jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE2")
+        }
+        else if countNameArray == 40
+        {
+            jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE1")
         }*/
+        //jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE")
+        
+        /*if callCount == 0
+        {
+            jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE3")
+        }
+        else if countNameArray == 20
+        {
+            jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE2")
+        }
+        else if countNameArray == 40
+        {
+            jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE1")
+        }*/
+        
+        switch callCount
+        {
+            case 0:
+                jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE1")
+            case 1:
+                jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE2")
+            case 2:
+                jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE3")
+            //case 3:
+              //  callCount = 0
+            default:
+                break
+        }
+        callCount = callCount + 1
     }
     
     func funcAlert(title: String, message: String)
@@ -118,9 +121,16 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         let image = UIImage(named: jsonCall.arrayImageName[indexPath.row])!
         cell.funcDisplayCollection(image: image, title: title)
-        //cell.backgroundColor = cellColor ? .red : .blue
-        //cellColor = !cellColor
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath)
+    {
+        if indexPath.row == jsonCall.arrayImageName.count - 1
+        {
+            print(indexPath.row)
+            funcJsonPath()
+        }
     }
 }
 

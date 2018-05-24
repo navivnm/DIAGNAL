@@ -15,7 +15,7 @@ struct parsedData
     
     init(json: [String: Any])
     {
-        name = json["name"] as? String ?? ""
-        imageName = json["poster-image"] as? String ?? ""
+        name = json["name"] as? String ?? "****"
+        imageName = json["poster-image"] as? String ?? "placeholder_for_missing_posters.png"
     }
 }
