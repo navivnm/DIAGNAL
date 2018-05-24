@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -16,12 +16,12 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Entertainment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5AG-mS-gjW">
-                                <rect key="frame" x="2" y="78" width="316" height="490"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="54" width="414" height="682"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="60" minimumInteritemSpacing="2" id="bXe-LS-o5c">
                                     <size key="itemSize" width="95" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -68,15 +68,66 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="M1z-mr-Z9I"/>
                                 </connections>
                             </collectionView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRi-j8-SkP">
+                                <rect key="frame" x="0.0" y="54" width="414" height="682"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="viewbg1x" translatesAutoresizingMaskIntoConstraints="NO" id="VpW-Fi-sHS">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="682"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6z-iu-5m3">
+                                        <rect key="frame" x="183.66666666666666" y="216.33333333333331" width="48" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DQk-Hc-b8U">
+                                        <rect key="frame" x="107.33333333333331" y="241.33333333333331" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="ced-S4-upp"/>
+                                            <constraint firstAttribute="height" constant="200" id="dTo-uM-pjx"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="DQk-Hc-b8U" firstAttribute="centerX" secondItem="bRi-j8-SkP" secondAttribute="centerX" id="1K9-MZ-gvu"/>
+                                    <constraint firstAttribute="bottom" secondItem="VpW-Fi-sHS" secondAttribute="bottom" id="Gmh-fG-rA5"/>
+                                    <constraint firstItem="VpW-Fi-sHS" firstAttribute="leading" secondItem="bRi-j8-SkP" secondAttribute="leading" id="UnP-cm-8vM"/>
+                                    <constraint firstItem="DQk-Hc-b8U" firstAttribute="centerY" secondItem="bRi-j8-SkP" secondAttribute="centerY" id="a2z-BA-aQx"/>
+                                    <constraint firstItem="l6z-iu-5m3" firstAttribute="centerX" secondItem="bRi-j8-SkP" secondAttribute="centerX" id="d8J-bP-hnL"/>
+                                    <constraint firstAttribute="bottom" secondItem="DQk-Hc-b8U" secondAttribute="bottom" constant="8" id="ivc-eM-XUD"/>
+                                    <constraint firstItem="VpW-Fi-sHS" firstAttribute="top" secondItem="bRi-j8-SkP" secondAttribute="top" id="kkH-tX-OBR"/>
+                                    <constraint firstItem="DQk-Hc-b8U" firstAttribute="top" secondItem="l6z-iu-5m3" secondAttribute="bottom" constant="1" id="mo9-ZR-g3a"/>
+                                    <constraint firstAttribute="trailing" secondItem="VpW-Fi-sHS" secondAttribute="trailing" id="qoN-Qh-9IH"/>
+                                    <constraint firstItem="l6z-iu-5m3" firstAttribute="top" secondItem="bRi-j8-SkP" secondAttribute="top" constant="2" id="x2j-9z-EHs"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ivc-eM-XUD"/>
+                                        <exclude reference="x2j-9z-EHs"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="a2z-BA-aQx"/>
+                                        <exclude reference="ivc-eM-XUD"/>
+                                        <include reference="mo9-ZR-g3a"/>
+                                        <exclude reference="x2j-9z-EHs"/>
+                                    </mask>
+                                </variation>
+                            </view>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BoF-xH-hoo">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="54"/>
                                 <items>
                                     <navigationItem title="555" prompt=" " leftItemsSupplementBackButton="YES" id="zSG-Ra-ibg">
                                         <leftBarButtonItems>
                                             <barButtonItem image="Back1X" landscapeImage="BackLand1X" id="mjX-AM-YlE">
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="btnBackAction:" destination="BYZ-38-t0r" id="UmC-fh-oh0"/>
+                                                </connections>
                                             </barButtonItem>
-                                            <barButtonItem title="Item" id="uPu-Xa-DLa">
+                                            <barButtonItem enabled="NO" title="Item" id="uPu-Xa-DLa">
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </barButtonItem>
                                         </leftBarButtonItems>
@@ -89,20 +140,51 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5AG-mS-gjW" secondAttribute="bottom" id="4MD-K2-tqi"/>
+                            <constraint firstItem="bRi-j8-SkP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="47X-M6-eHb"/>
+                            <constraint firstAttribute="bottom" secondItem="5AG-mS-gjW" secondAttribute="bottom" id="4MD-K2-tqi"/>
                             <constraint firstItem="BoF-xH-hoo" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Avp-13-e6G"/>
+                            <constraint firstItem="bRi-j8-SkP" firstAttribute="top" secondItem="BoF-xH-hoo" secondAttribute="bottom" id="Eqb-LF-1o8"/>
+                            <constraint firstAttribute="bottom" secondItem="bRi-j8-SkP" secondAttribute="bottom" id="F6j-Af-IVq"/>
                             <constraint firstItem="BoF-xH-hoo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Han-1g-ZuL"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5AG-mS-gjW" secondAttribute="trailing" constant="2" id="J7X-Qm-Vnp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5AG-mS-gjW" secondAttribute="trailing" id="J7X-Qm-Vnp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bRi-j8-SkP" secondAttribute="trailing" id="JR8-eI-6dy"/>
+                            <constraint firstItem="bRi-j8-SkP" firstAttribute="top" secondItem="BoF-xH-hoo" secondAttribute="bottom" id="Tbm-Gd-zVc"/>
                             <constraint firstAttribute="trailing" secondItem="BoF-xH-hoo" secondAttribute="trailing" id="Udk-QZ-u4U"/>
                             <constraint firstItem="5AG-mS-gjW" firstAttribute="top" secondItem="BoF-xH-hoo" secondAttribute="bottom" id="hr2-oY-lBJ"/>
-                            <constraint firstItem="5AG-mS-gjW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="2" id="ycR-mi-Yh5"/>
+                            <constraint firstItem="bRi-j8-SkP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="58" id="pfw-bA-2Xz">
+                                <variation key="heightClass=compact-widthClass=compact" constant="66"/>
+                            </constraint>
+                            <constraint firstItem="5AG-mS-gjW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="34" id="tHm-vB-j5M"/>
+                            <constraint firstItem="5AG-mS-gjW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ycR-mi-Yh5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="tHm-vB-j5M"/>
+                                <exclude reference="Eqb-LF-1o8"/>
+                                <exclude reference="Tbm-Gd-zVc"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="Tbm-Gd-zVc"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="tHm-vB-j5M"/>
+                                <include reference="Eqb-LF-1o8"/>
+                                <exclude reference="pfw-bA-2Xz"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="5AG-mS-gjW" id="6dG-XD-4hI"/>
+                        <outlet property="imageInfo" destination="DQk-Hc-b8U" id="3IA-Lz-AEP"/>
+                        <outlet property="labelInfo" destination="l6z-iu-5m3" id="gOz-ul-Poz"/>
                         <outlet property="navigationBar" destination="BoF-xH-hoo" id="BCA-qW-JGf"/>
                         <outlet property="navigationName" destination="uPu-Xa-DLa" id="NMt-zr-roA"/>
+                        <outlet property="viewItemInfo" destination="bRi-j8-SkP" id="fWX-YI-kuE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -116,5 +198,7 @@
         <image name="poster1" width="182" height="272"/>
         <image name="search1X" width="25" height="25"/>
         <image name="searchLand1X" width="18" height="18"/>
+        <image name="viewbg1x" width="480" height="853"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

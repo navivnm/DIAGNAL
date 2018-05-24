@@ -13,6 +13,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var navigationName: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var viewItemInfo: UIView!
+    @IBOutlet weak var imageInfo: UIImageView!
+    @IBOutlet weak var labelInfo: UILabel!
     
     var jsonCall = jsonClass()
     var callCount = 0
@@ -33,6 +36,17 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         // Dispose of any resources that can be recreated.
     }
 
+    //back button action
+    @IBAction func btnBackAction(_ sender: Any)
+    {
+        //hide viewinfo
+        if viewItemInfo.isHidden == false
+        {
+            navigationName.title = jsonCall.title
+            viewItemInfo.isHidden = true
+        }
+    }
+    
     //json cal
     func funcJsonPath()
     {
@@ -46,43 +60,15 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                 else
                 {
                     self?.collectionView.reloadData()
+                    self?.navigationName.title = self?.jsonCall.title
                     //self?.funcAlert(title: "got data", message: "got json data")
-                    for i in (self?.jsonCall.arrayImageName)!
+                    /*for i in (self?.jsonCall.arrayImageName)!
                     {
                         print(i)
-                    }
+                    }*/
                 }
             }
         }
-        
-        /*let countNameArray = jsonCall.arrayName.count
-        print(countNameArray)
-        if countNameArray == 0
-        {
-            jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE3")
-        }
-        else if countNameArray == 20
-        {
-            jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE2")
-        }
-        else if countNameArray == 40
-        {
-            jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE1")
-        }*/
-        //jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE")
-        
-        /*if callCount == 0
-        {
-            jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE3")
-        }
-        else if countNameArray == 20
-        {
-            jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE2")
-        }
-        else if countNameArray == 40
-        {
-            jsonCall.funcJsonParse(jsonFile: "CONTENTLISTINGPAGE-PAGE1")
-        }*/
         
         switch callCount
         {
@@ -126,11 +112,21 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath)
     {
+        
         if indexPath.row == jsonCall.arrayImageName.count - 1
         {
             print(indexPath.row)
             funcJsonPath()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //print(jsonCall.arrayName[indexPath.row],jsonCall.arrayImageName[indexPath.row])
+        viewItemInfo.isHidden = false
+        imageInfo.image = UIImage(named: jsonCall.arrayImageName[indexPath.row])
+        let temp = jsonCall.arrayName[indexPath.row]
+        labelInfo.text = temp
+        navigationName.title = temp
     }
 }
 

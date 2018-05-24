@@ -13,6 +13,7 @@ class jsonClass
     var jsonStatus: ((_ status: String) -> Void)?
     var arrayName = [String]()
     var arrayImageName = [String]()
+    var title = String()
     
     func funcJsonParse(jsonFile: String)
     {
@@ -27,7 +28,7 @@ class jsonClass
                     jsonStatus?("0")
                     return
                 }
-                //let page = json.value(forKey: "page") as! NSDictionary
+                
                 guard let contentitems = page.value(forKey: "content-items") as? NSDictionary else {
                     jsonStatus?("0")
                     return
@@ -48,6 +49,7 @@ class jsonClass
                     {
                         arrayImageName.append(parse.imageName)
                     }
+                    title = page.value(forKey: "title") as? String ?? "Title"
                     //print(parse.name,"url", parse.imageName)
                 }
                 print("--------")
