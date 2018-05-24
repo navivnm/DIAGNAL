@@ -19,6 +19,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     var jsonCall = jsonClass()
     var callCount = 0
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -51,7 +52,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     func funcJsonPath()
     {
         self.jsonCall.jsonStatus = {[weak self] (status: String) in
-            print("****************", status)
+            //print("****************", status)
             DispatchQueue.main.async {
                 if status == "0"
                 {
@@ -61,15 +62,11 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                 {
                     self?.collectionView.reloadData()
                     self?.navigationName.title = self?.jsonCall.title
-                    //self?.funcAlert(title: "got data", message: "got json data")
-                    /*for i in (self?.jsonCall.arrayImageName)!
-                    {
-                        print(i)
-                    }*/
                 }
             }
         }
         
+        //choose with json file to load
         switch callCount
         {
             case 0:
@@ -86,6 +83,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         callCount = callCount + 1
     }
     
+    //alertview
     func funcAlert(title: String, message: String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -115,13 +113,13 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         if indexPath.row == jsonCall.arrayImageName.count - 1
         {
-            print(indexPath.row)
+            //print(indexPath.row)
             funcJsonPath()
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //print(jsonCall.arrayName[indexPath.row],jsonCall.arrayImageName[indexPath.row])
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
         viewItemInfo.isHidden = false
         imageInfo.image = UIImage(named: jsonCall.arrayImageName[indexPath.row])
         let temp = jsonCall.arrayName[indexPath.row]

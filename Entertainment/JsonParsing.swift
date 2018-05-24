@@ -15,6 +15,7 @@ class jsonClass
     var arrayImageName = [String]()
     var title = String()
     
+    //parse json
     func funcJsonParse(jsonFile: String)
     {
         if let path = Bundle.main.path(forResource: jsonFile, ofType: "json")
@@ -52,11 +53,11 @@ class jsonClass
                     title = page.value(forKey: "title") as? String ?? "Title"
                     //print(parse.name,"url", parse.imageName)
                 }
-                print("--------")
+                //print("--------")
                 jsonStatus?("1")
             
             }catch{
-                print("errr")
+                //print("errr")
                 jsonStatus?("0")
             }
         }
