@@ -56,7 +56,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             DispatchQueue.main.async {
                 if status == "0"
                 {
-                    self?.funcAlert(title: "no data", message: "unable to find json")
+                    self?.funcAlert(title: "ooops!", message: "unable to load data")
                 }
                 else
                 {
